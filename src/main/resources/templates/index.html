@@ -2,19 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@400;600&display=swap" rel="stylesheet"> 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/custom.css}" type="text/css" />
   </head>
   <body>
-    <div id="app" class="container bg-light justify-content-center">
+    <div id="app" class="container justify-content-center">
       <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-8 offset-md-2">
           <br />
-          <h1 class="text-center">Get Your Local Forecast</h1>
+          <h1 class="brand text-center">WeatherApp</h1>
           <form th:action="@{/}" th:object="${request}" method="post" autocomplete="off">
             <div class="form-group">
               <label th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}" class="validation-message"></label>
-              <input type="text" th:field="*{zipCode}" placeholder="Zip Code" class="form-control" />
+              <input type="text" th:field="*{zipCode}" placeholder="Zip Code"/>
             </div>
             <div class="form-group">
               <button class="btn btn-md btn-primary btn-block" name="Submit" value="Submit" type="Submit">Check Weather</button>
@@ -24,11 +27,11 @@
           <hr />
           <div th:if="${data != null && data.name != 'error'}">
             <h3>Forecast for <span th:text="${data.name}"></span></h3>
-            <p><b>Temperature:</b> <span th:text="${data.main.get('temp')}"></span>&#8457;</p>
-            <p><b>Cloud Cover:</b> <span th:text="${data.clouds.get('all')}"></span>%</p>
-            <p><b>Wind:</b> <span th:text="${data.wind.get('speed')}"></span>mph</p>
+            <p><span class="temperature" th:text="${data.main.get('temp')} + '&#176;'"></span></p>
+            <p><strong>Cloud Cover:</strong> <span th:text="${data.clouds.get('all')}"></span>%</p>
+            <p><strong>Wind:</strong> <span th:text="${data.wind.get('speed')}"></span>mph</p>
             <p>
-              <b>Conditions:</b> <span id="weather-condition" th:text="${data.weather[0].get('description')}"></span>
+              <strong>Conditions:</strong> <span id="weather-condition" th:text="${data.weather[0].get('description')}"></span>
               <img
                 th:src="@{${'http://openweathermap.org/img/w/' 
                 + data.weather[0].get('icon') + '.png'}}"
@@ -37,7 +40,7 @@
           </div>
           <table>
             <tr>
-              <th><h4>Your most recent searches</h4></th>
+              <th><h4>Your most recent searches:</h4></th>
             </tr>
             <tr th:each="zipCode : ${zipCodes}">
               <td th:text="${zipCode.code}"></td>
