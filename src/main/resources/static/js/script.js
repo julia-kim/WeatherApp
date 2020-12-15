@@ -1,4 +1,8 @@
 var images = [
+  // DEFAULT
+  {
+    url: "1429081271179-49f13a9d4d99?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+  },
   {
     condition: ["clear sky"],
     url: "1557637675-2149a5295fb7?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1500&q=80",
@@ -74,13 +78,14 @@ var images = [
   },
   // CLOUDY
   {
-    condition: ["few clouds: 11-25%", "scattered clouds: 25-50%", "broken clouds: 51-84%", "overcast clouds: 85-100%"],
+    condition: ["few clouds", "scattered clouds", "broken clouds", "overcast clouds"],
     url: "1469365556835-3da3db4c253b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80",
   },
 ]
 
-function unsplash(weatherType) {
+function unsplash() {
   var url
+  var weatherType = document.querySelector("#weather-condition").innerHTML
   for (var i in images) {
     if (!images[i]["condition"] || images[i]["condition"].indexOf(weatherType) > -1) {
       url = images[i]["url"]
@@ -89,4 +94,4 @@ function unsplash(weatherType) {
   document.querySelector("#app").style.backgroundImage = "url(https://images.unsplash.com/photo-" + url + ")"
 }
 
-unsplash(document.querySelector("#weather-condition").innerHTML)
+unsplash()
