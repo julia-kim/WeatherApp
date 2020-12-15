@@ -22,7 +22,7 @@ public class WeatherController {
     @GetMapping
     public String getIndex(Model model) {
         model.addAttribute("request", new Request());  
-        model.addAttribute("zipCodes", weatherService.findAllByOrderByCreatedAtDesc());
+        model.addAttribute("zipCodes", weatherService.getMostRecentSearches());
         return "index";
     }
     

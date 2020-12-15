@@ -34,8 +34,8 @@ public class WeatherService {
         }
     }
     
-    public List<ZipCode> findAllByOrderByCreatedAtDesc() {
-    	return zipCodeRepository.findAllByOrderByCreatedAtDesc();
+    public List<ZipCode> getMostRecentSearches() {
+    	return zipCodeRepository.findTop10ByOrderByCreatedAtDesc();
     }
     
     public void addZipCode(String data) {

@@ -9,5 +9,5 @@ import com.julia.weatherapp.model.ZipCode;
 
 @Repository
 public interface ZipCodeRepository extends CrudRepository<ZipCode, Long> {
-	List<ZipCode> findAllByOrderByCreatedAtDesc();
+	List<ZipCode> findTop10ByOrderByCreatedAtDesc();
 }
