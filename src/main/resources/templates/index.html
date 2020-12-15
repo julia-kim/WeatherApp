@@ -6,7 +6,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
-    <div class="container bg-light justify-content-center">
+    <div id="app" class="container bg-light justify-content-center">
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <br />
@@ -28,7 +28,7 @@
             <p><b>Cloud Cover:</b> <span th:text="${data.clouds.get('all')}"></span>%</p>
             <p><b>Wind:</b> <span th:text="${data.wind.get('speed')}"></span>mph</p>
             <p>
-              <b>Conditions:</b> <span th:text="${data.weather[0].get('description')}"></span>
+              <b>Conditions:</b> <span id="weather-condition" th:text="${data.weather[0].get('description')}"></span>
               <img
                 th:src="@{${'http://openweathermap.org/img/w/' 
                 + data.weather[0].get('icon') + '.png'}}"
@@ -46,5 +46,6 @@
         </div>
       </div>
     </div>
+    <script src="/static/js/script.js" th:src="@{/js/script.js}" type="text/javascript"></script>
   </body>
 </html>
